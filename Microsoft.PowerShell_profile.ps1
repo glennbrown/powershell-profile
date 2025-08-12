@@ -272,13 +272,13 @@ Set-PSReadLineOption -Colors @{
 # Get theme from profile.ps1 or use a default theme
 function Get-Theme {
     if (Test-Path -Path $PROFILE.CurrentUserAllHosts -PathType leaf) {
-        $existingTheme = Select-String -Raw -Path $PROFILE.CurrentUserAllHosts -Pattern "starship preset"
+        $existingTheme = Select-String -Raw -Path $PROFILE.CurrentUserAllHosts -Pattern "starship init"
         if ($null -ne $existingTheme) {
             Invoke-Expression $existingTheme
             return
         }
     } else {
-        starship preset catppuccin-powerline -o $HOME/.config/starship.toml
+        Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/glennbrown/powershell-profile/refs/heads/main/catppuccin-powerline.toml' -OutFile '$HOME\.config\starship.toml'
         Invoke-Expression (&starship init powershell)
     }
 }
