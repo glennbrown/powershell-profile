@@ -278,7 +278,7 @@ function Get-Theme {
             return
         }
     } else {
-        Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/glennbrown/powershell-profile/refs/heads/main/catppuccin-powerline.toml' -OutFile '$HOME\.config\starship.toml'
+        Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/glennbrown/powershell-profile/refs/heads/main/catppuccin-powerline.toml' -OutFile $HOME\.config\starship.toml
         Invoke-Expression (&starship init powershell)
     }
 }
